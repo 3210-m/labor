@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oracle.labor.dao.ZjDwzpgzbMapper">
+  <resultMap id="BaseResultMap" type="com.oracle.labor.po.ZjDwzpgzb">
+    <id column="ZPGZBH" jdbcType="VARCHAR" property="zpgzbh" />
+    <result column="ZPBH" jdbcType="VARCHAR" property="zpbh" />
+    <result column="ZPGZ" jdbcType="VARCHAR" property="zpgz" />
+    <result column="ZPGZBM" jdbcType="VARCHAR" property="zpgzbm" />
+    <result column="GWLB" jdbcType="VARCHAR" property="gwlb" />
+    <result column="ZRS" jdbcType="VARCHAR" property="zrs" />
+    <result column="ZPRSN" jdbcType="VARCHAR" property="zprsn" />
+    <result column="ZPRSNV" jdbcType="VARCHAR" property="zprsnv" />
+    <result column="XBBX" jdbcType="VARCHAR" property="xbbx" />
+    <result column="hjxz" jdbcType="VARCHAR" property="hjxz" />
+    <result column="KSSJ" jdbcType="VARCHAR" property="kssj" />
+    <result column="JSSJ" jdbcType="VARCHAR" property="jssj" />
+    <result column="ZXNL" jdbcType="VARCHAR" property="zxnl" />
+    <result column="ZDNL" jdbcType="VARCHAR" property="zdnl" />
+    <result column="whcd" jdbcType="VARCHAR" property="whcd" />
+    <result column="ygxs" jdbcType="VARCHAR" property="ygxs" />
+    <result column="ZZYX" jdbcType="VARCHAR" property="zzyx" />
+    <result column="ZGYX" jdbcType="VARCHAR" property="zgyx" />
+    <result column="hyzk" jdbcType="VARCHAR" property="hyzk" />
+    <result column="jkzk" jdbcType="VARCHAR" property="jkzk" />
+    <result column="rylb" jdbcType="VARCHAR" property="rylb" />
+    <result column="sfbys" jdbcType="VARCHAR" property="sfbys" />
+    <result column="ZPDQ" jdbcType="VARCHAR" property="zpdq" />
+    <result column="JYYZ" jdbcType="VARCHAR" property="jyyz" />
+    <result column="SLCD" jdbcType="VARCHAR" property="slcd" />
+    <result column="JSJDJ" jdbcType="VARCHAR" property="jsjdj" />
+    <result column="JSJSLCD" jdbcType="VARCHAR" property="jsjslcd" />
+    <result column="GWMS" jdbcType="VARCHAR" property="gwms" />
+    <result column="GZDD" jdbcType="VARCHAR" property="gzdd" />
+    <result column="CGRSN" jdbcType="VARCHAR" property="cgrsn" />
+    <result column="CGRSNV" jdbcType="VARCHAR" property="cgrsnv" />
+    <result column="DJYXQ" jdbcType="VARCHAR" property="djyxq" />
+    <result column="DJSJ" jdbcType="VARCHAR" property="djsj" />
+    <result column="GDSJ" jdbcType="VARCHAR" property="gdsj" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ZPGZBH, ZPBH, ZPGZ, ZPGZBM, GWLB, ZRS, ZPRSN, ZPRSNV, XBBX, hjxz, KSSJ, JSSJ, ZXNL, 
+    ZDNL, whcd, ygxs, ZZYX, ZGYX, hyzk, jkzk, rylb, sfbys, ZPDQ, JYYZ, SLCD, JSJDJ, JSJSLCD, 
+    GWMS, GZDD, CGRSN, CGRSNV, DJYXQ, DJSJ, GDSJ
+  </sql>
+  <select id="selectByExample" parameterType="com.oracle.labor.po.ZjDwzpgzbExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from zj_dwzpgzb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zj_dwzpgzb
+    where ZPGZBH = #{zpgzbh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from zj_dwzpgzb
+    where ZPGZBH = #{zpgzbh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oracle.labor.po.ZjDwzpgzbExample">
+    delete from zj_dwzpgzb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.oracle.labor.po.ZjDwzpgzb">
+    insert into zj_dwzpgzb (ZPGZBH, ZPBH, ZPGZ, 
+      ZPGZBM, GWLB, ZRS, 
+      ZPRSN, ZPRSNV, XBBX, 
+      hjxz, KSSJ, JSSJ, ZXNL, 
+      ZDNL, whcd, ygxs, ZZYX, 
+      ZGYX, hyzk, jkzk, rylb, 
+      sfbys, ZPDQ, JYYZ, 
+      SLCD, JSJDJ, JSJSLCD, 
+      GWMS, GZDD, CGRSN, 
+      CGRSNV, DJYXQ, DJSJ, 
+      GDSJ)
+    values (#{zpgzbh,jdbcType=VARCHAR}, #{zpbh,jdbcType=VARCHAR}, #{zpgz,jdbcType=VARCHAR}, 
+      #{zpgzbm,jdbcType=VARCHAR}, #{gwlb,jdbcType=VARCHAR}, #{zrs,jdbcType=VARCHAR}, 
+      #{zprsn,jdbcType=VARCHAR}, #{zprsnv,jdbcType=VARCHAR}, #{xbbx,jdbcType=VARCHAR}, 
+      #{hjxz,jdbcType=VARCHAR}, #{kssj,jdbcType=VARCHAR}, #{jssj,jdbcType=VARCHAR}, #{zxnl,jdbcType=VARCHAR}, 
+      #{zdnl,jdbcType=VARCHAR}, #{whcd,jdbcType=VARCHAR}, #{ygxs,jdbcType=VARCHAR}, #{zzyx,jdbcType=VARCHAR}, 
+      #{zgyx,jdbcType=VARCHAR}, #{hyzk,jdbcType=VARCHAR}, #{jkzk,jdbcType=VARCHAR}, #{rylb,jdbcType=VARCHAR}, 
+      #{sfbys,jdbcType=VARCHAR}, #{zpdq,jdbcType=VARCHAR}, #{jyyz,jdbcType=VARCHAR}, 
+      #{slcd,jdbcType=VARCHAR}, #{jsjdj,jdbcType=VARCHAR}, #{jsjslcd,jdbcType=VARCHAR}, 
+      #{gwms,jdbcType=VARCHAR}, #{gzdd,jdbcType=VARCHAR}, #{cgrsn,jdbcType=VARCHAR}, 
+      #{cgrsnv,jdbcType=VARCHAR}, #{djyxq,jdbcType=VARCHAR}, #{djsj,jdbcType=VARCHAR}, 
+      #{gdsj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oracle.labor.po.ZjDwzpgzb">
+    insert into zj_dwzpgzb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zpgzbh != null">
+        ZPGZBH,
+      </if>
+      <if test="zpbh != null">
+        ZPBH,
+      </if>
+      <if test="zpgz != null">
+        ZPGZ,
+      </if>
+      <if test="zpgzbm != null">
+        ZPGZBM,
+      </if>
+      <if test="gwlb != null">
+        GWLB,
+      </if>
+      <if test="zrs != null">
+        ZRS,
+      </if>
+      <if test="zprsn != null">
+        ZPRSN,
+      </if>
+      <if test="zprsnv != null">
+        ZPRSNV,
+      </if>
+      <if test="xbbx != null">
+        XBBX,
+      </if>
+      <if test="hjxz != null">
+        hjxz,
+      </if>
+      <if test="kssj != null">
+        KSSJ,
+      </if>
+      <if test="jssj != null">
+        JSSJ,
+      </if>
+      <if test="zxnl != null">
+        ZXNL,
+      </if>
+      <if test="zdnl != null">
+        ZDNL,
+      </if>
+      <if test="whcd != null">
+        whcd,
+      </if>
+      <if test="ygxs != null">
+        ygxs,
+      </if>
+      <if test="zzyx != null">
+        ZZYX,
+      </if>
+      <if test="zgyx != null">
+        ZGYX,
+      </if>
+      <if test="hyzk != null">
+        hyzk,
+      </if>
+      <if test="jkzk != null">
+        jkzk,
+      </if>
+      <if test="rylb != null">
+        rylb,
+      </if>
+      <if test="sfbys != null">
+        sfbys,
+      </if>
+      <if test="zpdq != null">
+        ZPDQ,
+      </if>
+      <if test="jyyz != null">
+        JYYZ,
+      </if>
+      <if test="slcd != null">
+        SLCD,
+      </if>
+      <if test="jsjdj != null">
+        JSJDJ,
+      </if>
+      <if test="jsjslcd != null">
+        JSJSLCD,
+      </if>
+      <if test="gwms != null">
+        GWMS,
+      </if>
+      <if test="gzdd != null">
+        GZDD,
+      </if>
+      <if test="cgrsn != null">
+        CGRSN,
+      </if>
+      <if test="cgrsnv != null">
+        CGRSNV,
+      </if>
+      <if test="djyxq != null">
+        DJYXQ,
+      </if>
+      <if test="djsj != null">
+        DJSJ,
+      </if>
+      <if test="gdsj != null">
+        GDSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zpgzbh != null">
+        #{zpgzbh,jdbcType=VARCHAR},
+      </if>
+      <if test="zpbh != null">
+        #{zpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="zpgz != null">
+        #{zpgz,jdbcType=VARCHAR},
+      </if>
+      <if test="zpgzbm != null">
+        #{zpgzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="gwlb != null">
+        #{gwlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zrs != null">
+        #{zrs,jdbcType=VARCHAR},
+      </if>
+      <if test="zprsn != null">
+        #{zprsn,jdbcType=VARCHAR},
+      </if>
+      <if test="zprsnv != null">
+        #{zprsnv,jdbcType=VARCHAR},
+      </if>
+      <if test="xbbx != null">
+        #{xbbx,jdbcType=VARCHAR},
+      </if>
+      <if test="hjxz != null">
+        #{hjxz,jdbcType=VARCHAR},
+      </if>
+      <if test="kssj != null">
+        #{kssj,jdbcType=VARCHAR},
+      </if>
+      <if test="jssj != null">
+        #{jssj,jdbcType=VARCHAR},
+      </if>
+      <if test="zxnl != null">
+        #{zxnl,jdbcType=VARCHAR},
+      </if>
+      <if test="zdnl != null">
+        #{zdnl,jdbcType=VARCHAR},
+      </if>
+      <if test="whcd != null">
+        #{whcd,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxs != null">
+        #{ygxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zzyx != null">
+        #{zzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyx != null">
+        #{zgyx,jdbcType=VARCHAR},
+      </if>
+      <if test="hyzk != null">
+        #{hyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="jkzk != null">
+        #{jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="rylb != null">
+        #{rylb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfbys != null">
+        #{sfbys,jdbcType=VARCHAR},
+      </if>
+      <if test="zpdq != null">
+        #{zpdq,jdbcType=VARCHAR},
+      </if>
+      <if test="jyyz != null">
+        #{jyyz,jdbcType=VARCHAR},
+      </if>
+      <if test="slcd != null">
+        #{slcd,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjdj != null">
+        #{jsjdj,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjslcd != null">
+        #{jsjslcd,jdbcType=VARCHAR},
+      </if>
+      <if test="gwms != null">
+        #{gwms,jdbcType=VARCHAR},
+      </if>
+      <if test="gzdd != null">
+        #{gzdd,jdbcType=VARCHAR},
+      </if>
+      <if test="cgrsn != null">
+        #{cgrsn,jdbcType=VARCHAR},
+      </if>
+      <if test="cgrsnv != null">
+        #{cgrsnv,jdbcType=VARCHAR},
+      </if>
+      <if test="djyxq != null">
+        #{djyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="djsj != null">
+        #{djsj,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsj != null">
+        #{gdsj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oracle.labor.po.ZjDwzpgzbExample" resultType="java.lang.Long">
+    select count(*) from zj_dwzpgzb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update zj_dwzpgzb
+    <set>
+      <if test="record.zpgzbh != null">
+        ZPGZBH = #{record.zpgzbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zpbh != null">
+        ZPBH = #{record.zpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zpgz != null">
+        ZPGZ = #{record.zpgz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zpgzbm != null">
+        ZPGZBM = #{record.zpgzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gwlb != null">
+        GWLB = #{record.gwlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zrs != null">
+        ZRS = #{record.zrs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zprsn != null">
+        ZPRSN = #{record.zprsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zprsnv != null">
+        ZPRSNV = #{record.zprsnv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xbbx != null">
+        XBBX = #{record.xbbx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hjxz != null">
+        hjxz = #{record.hjxz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kssj != null">
+        KSSJ = #{record.kssj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jssj != null">
+        JSSJ = #{record.jssj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zxnl != null">
+        ZXNL = #{record.zxnl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zdnl != null">
+        ZDNL = #{record.zdnl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.whcd != null">
+        whcd = #{record.whcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygxs != null">
+        ygxs = #{record.ygxs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zzyx != null">
+        ZZYX = #{record.zzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zgyx != null">
+        ZGYX = #{record.zgyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hyzk != null">
+        hyzk = #{record.hyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jkzk != null">
+        jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rylb != null">
+        rylb = #{record.rylb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfbys != null">
+        sfbys = #{record.sfbys,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zpdq != null">
+        ZPDQ = #{record.zpdq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jyyz != null">
+        JYYZ = #{record.jyyz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.slcd != null">
+        SLCD = #{record.slcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsjdj != null">
+        JSJDJ = #{record.jsjdj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsjslcd != null">
+        JSJSLCD = #{record.jsjslcd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gwms != null">
+        GWMS = #{record.gwms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gzdd != null">
+        GZDD = #{record.gzdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cgrsn != null">
+        CGRSN = #{record.cgrsn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cgrsnv != null">
+        CGRSNV = #{record.cgrsnv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.djyxq != null">
+        DJYXQ = #{record.djyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.djsj != null">
+        DJSJ = #{record.djsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsj != null">
+        GDSJ = #{record.gdsj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update zj_dwzpgzb
+    set ZPGZBH = #{record.zpgzbh,jdbcType=VARCHAR},
+      ZPBH = #{record.zpbh,jdbcType=VARCHAR},
+      ZPGZ = #{record.zpgz,jdbcType=VARCHAR},
+      ZPGZBM = #{record.zpgzbm,jdbcType=VARCHAR},
+      GWLB = #{record.gwlb,jdbcType=VARCHAR},
+      ZRS = #{record.zrs,jdbcType=VARCHAR},
+      ZPRSN = #{record.zprsn,jdbcType=VARCHAR},
+      ZPRSNV = #{record.zprsnv,jdbcType=VARCHAR},
+      XBBX = #{record.xbbx,jdbcType=VARCHAR},
+      hjxz = #{record.hjxz,jdbcType=VARCHAR},
+      KSSJ = #{record.kssj,jdbcType=VARCHAR},
+      JSSJ = #{record.jssj,jdbcType=VARCHAR},
+      ZXNL = #{record.zxnl,jdbcType=VARCHAR},
+      ZDNL = #{record.zdnl,jdbcType=VARCHAR},
+      whcd = #{record.whcd,jdbcType=VARCHAR},
+      ygxs = #{record.ygxs,jdbcType=VARCHAR},
+      ZZYX = #{record.zzyx,jdbcType=VARCHAR},
+      ZGYX = #{record.zgyx,jdbcType=VARCHAR},
+      hyzk = #{record.hyzk,jdbcType=VARCHAR},
+      jkzk = #{record.jkzk,jdbcType=VARCHAR},
+      rylb = #{record.rylb,jdbcType=VARCHAR},
+      sfbys = #{record.sfbys,jdbcType=VARCHAR},
+      ZPDQ = #{record.zpdq,jdbcType=VARCHAR},
+      JYYZ = #{record.jyyz,jdbcType=VARCHAR},
+      SLCD = #{record.slcd,jdbcType=VARCHAR},
+      JSJDJ = #{record.jsjdj,jdbcType=VARCHAR},
+      JSJSLCD = #{record.jsjslcd,jdbcType=VARCHAR},
+      GWMS = #{record.gwms,jdbcType=VARCHAR},
+      GZDD = #{record.gzdd,jdbcType=VARCHAR},
+      CGRSN = #{record.cgrsn,jdbcType=VARCHAR},
+      CGRSNV = #{record.cgrsnv,jdbcType=VARCHAR},
+      DJYXQ = #{record.djyxq,jdbcType=VARCHAR},
+      DJSJ = #{record.djsj,jdbcType=VARCHAR},
+      GDSJ = #{record.gdsj,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oracle.labor.po.ZjDwzpgzb">
+    update zj_dwzpgzb
+    <set>
+      <if test="zpbh != null">
+        ZPBH = #{zpbh,jdbcType=VARCHAR},
+      </if>
+      <if test="zpgz != null">
+        ZPGZ = #{zpgz,jdbcType=VARCHAR},
+      </if>
+      <if test="zpgzbm != null">
+        ZPGZBM = #{zpgzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="gwlb != null">
+        GWLB = #{gwlb,jdbcType=VARCHAR},
+      </if>
+      <if test="zrs != null">
+        ZRS = #{zrs,jdbcType=VARCHAR},
+      </if>
+      <if test="zprsn != null">
+        ZPRSN = #{zprsn,jdbcType=VARCHAR},
+      </if>
+      <if test="zprsnv != null">
+        ZPRSNV = #{zprsnv,jdbcType=VARCHAR},
+      </if>
+      <if test="xbbx != null">
+        XBBX = #{xbbx,jdbcType=VARCHAR},
+      </if>
+      <if test="hjxz != null">
+        hjxz = #{hjxz,jdbcType=VARCHAR},
+      </if>
+      <if test="kssj != null">
+        KSSJ = #{kssj,jdbcType=VARCHAR},
+      </if>
+      <if test="jssj != null">
+        JSSJ = #{jssj,jdbcType=VARCHAR},
+      </if>
+      <if test="zxnl != null">
+        ZXNL = #{zxnl,jdbcType=VARCHAR},
+      </if>
+      <if test="zdnl != null">
+        ZDNL = #{zdnl,jdbcType=VARCHAR},
+      </if>
+      <if test="whcd != null">
+        whcd = #{whcd,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxs != null">
+        ygxs = #{ygxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zzyx != null">
+        ZZYX = #{zzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyx != null">
+        ZGYX = #{zgyx,jdbcType=VARCHAR},
+      </if>
+      <if test="hyzk != null">
+        hyzk = #{hyzk,jdbcType=VARCHAR},
+      </if>
+      <if test="jkzk != null">
+        jkzk = #{jkzk,jdbcType=VARCHAR},
+      </if>
+      <if test="rylb != null">
+        rylb = #{rylb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfbys != null">
+        sfbys = #{sfbys,jdbcType=VARCHAR},
+      </if>
+      <if test="zpdq != null">
+        ZPDQ = #{zpdq,jdbcType=VARCHAR},
+      </if>
+      <if test="jyyz != null">
+        JYYZ = #{jyyz,jdbcType=VARCHAR},
+      </if>
+      <if test="slcd != null">
+        SLCD = #{slcd,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjdj != null">
+        JSJDJ = #{jsjdj,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjslcd != null">
+        JSJSLCD = #{jsjslcd,jdbcType=VARCHAR},
+      </if>
+      <if test="gwms != null">
+        GWMS = #{gwms,jdbcType=VARCHAR},
+      </if>
+      <if test="gzdd != null">
+        GZDD = #{gzdd,jdbcType=VARCHAR},
+      </if>
+      <if test="cgrsn != null">
+        CGRSN = #{cgrsn,jdbcType=VARCHAR},
+      </if>
+      <if test="cgrsnv != null">
+        CGRSNV = #{cgrsnv,jdbcType=VARCHAR},
+      </if>
+      <if test="djyxq != null">
+        DJYXQ = #{djyxq,jdbcType=VARCHAR},
+      </if>
+      <if test="djsj != null">
+        DJSJ = #{djsj,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsj != null">
+        GDSJ = #{gdsj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ZPGZBH = #{zpgzbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oracle.labor.po.ZjDwzpgzb">
+    update zj_dwzpgzb
+    set ZPBH = #{zpbh,jdbcType=VARCHAR},
+      ZPGZ = #{zpgz,jdbcType=VARCHAR},
+      ZPGZBM = #{zpgzbm,jdbcType=VARCHAR},
+      GWLB = #{gwlb,jdbcType=VARCHAR},
+      ZRS = #{zrs,jdbcType=VARCHAR},
+      ZPRSN = #{zprsn,jdbcType=VARCHAR},
+      ZPRSNV = #{zprsnv,jdbcType=VARCHAR},
+      XBBX = #{xbbx,jdbcType=VARCHAR},
+      hjxz = #{hjxz,jdbcType=VARCHAR},
+      KSSJ = #{kssj,jdbcType=VARCHAR},
+      JSSJ = #{jssj,jdbcType=VARCHAR},
+      ZXNL = #{zxnl,jdbcType=VARCHAR},
+      ZDNL = #{zdnl,jdbcType=VARCHAR},
+      whcd = #{whcd,jdbcType=VARCHAR},
+      ygxs = #{ygxs,jdbcType=VARCHAR},
+      ZZYX = #{zzyx,jdbcType=VARCHAR},
+      ZGYX = #{zgyx,jdbcType=VARCHAR},
+      hyzk = #{hyzk,jdbcType=VARCHAR},
+      jkzk = #{jkzk,jdbcType=VARCHAR},
+      rylb = #{rylb,jdbcType=VARCHAR},
+      sfbys = #{sfbys,jdbcType=VARCHAR},
+      ZPDQ = #{zpdq,jdbcType=VARCHAR},
+      JYYZ = #{jyyz,jdbcType=VARCHAR},
+      SLCD = #{slcd,jdbcType=VARCHAR},
+      JSJDJ = #{jsjdj,jdbcType=VARCHAR},
+      JSJSLCD = #{jsjslcd,jdbcType=VARCHAR},
+      GWMS = #{gwms,jdbcType=VARCHAR},
+      GZDD = #{gzdd,jdbcType=VARCHAR},
+      CGRSN = #{cgrsn,jdbcType=VARCHAR},
+      CGRSNV = #{cgrsnv,jdbcType=VARCHAR},
+      DJYXQ = #{djyxq,jdbcType=VARCHAR},
+      DJSJ = #{djsj,jdbcType=VARCHAR},
+      GDSJ = #{gdsj,jdbcType=VARCHAR}
+    where ZPGZBH = #{zpgzbh,jdbcType=VARCHAR}
+  </update>
+</mapper>

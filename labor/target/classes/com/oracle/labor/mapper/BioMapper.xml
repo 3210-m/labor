@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oracle.labor.dao.BioMapper">
+  <resultMap id="BaseResultMap" type="com.oracle.labor.po.Bio">
+    <id column="bio_id" jdbcType="VARCHAR" property="bioId" />
+    <result column="bio_no" jdbcType="VARCHAR" property="bioNo" />
+    <result column="bio_name" jdbcType="VARCHAR" property="bioName" />
+    <result column="bio_shortname" jdbcType="VARCHAR" property="bioShortname" />
+    <result column="bio_orgtype" jdbcType="VARCHAR" property="bioOrgtype" />
+    <result column="cdg_regtype" jdbcType="VARCHAR" property="cdgRegtype" />
+    <result column="bio_industry" jdbcType="VARCHAR" property="bioIndustry" />
+    <result column="bio_rga_regioncode" jdbcType="VARCHAR" property="bioRgaRegioncode" />
+    <result column="bio_bua_postcode" jdbcType="VARCHAR" property="bioBuaPostcode" />
+    <result column="bio_con_fax" jdbcType="VARCHAR" property="bioConFax" />
+    <result column="bio_con_mail" jdbcType="VARCHAR" property="bioConMail" />
+    <result column="bio_bua_address" jdbcType="VARCHAR" property="bioBuaAddress" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    bio_id, bio_no, bio_name, bio_shortname, bio_orgtype, cdg_regtype, bio_industry, 
+    bio_rga_regioncode, bio_bua_postcode, bio_con_fax, bio_con_mail, bio_bua_address
+  </sql>
+  <select id="selectByExample" parameterType="com.oracle.labor.po.BioExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bio
+    where bio_id = #{bioId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id = "selectBioNameByNo" parameterType = "String" resultType = "String">
+  	select bio_name from bio
+ 	where bio_no = #{bioNo}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bio
+    where bio_id = #{bioId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.oracle.labor.po.BioExample">
+    delete from bio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <insert id="insert1" parameterType="com.oracle.labor.po.Bio" useGeneratedKeys = "true" keyProperty = "bioId">
+    insert into bio (bio_id, bio_no, bio_name, 
+      bio_shortname, bio_orgtype, cdg_regtype, 
+      bio_industry, bio_rga_regioncode, bio_bua_postcode, 
+      bio_con_fax, bio_con_mail, bio_bua_address
+      )
+    values (null, #{bioNo,jdbcType=VARCHAR}, #{bioName,jdbcType=VARCHAR}, 
+      #{bioShortname,jdbcType=VARCHAR}, #{bioOrgtype,jdbcType=VARCHAR}, #{cdgRegtype,jdbcType=VARCHAR}, 
+      #{bioIndustry,jdbcType=VARCHAR}, #{bioRgaRegioncode,jdbcType=VARCHAR}, #{bioBuaPostcode,jdbcType=VARCHAR}, 
+      #{bioConFax,jdbcType=VARCHAR}, #{bioConMail,jdbcType=VARCHAR}, #{bioBuaAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insert" parameterType="com.oracle.labor.po.Bio"  useGeneratedKeys = "true" keyProperty = "bioId">
+    insert into bio (bio_id, bio_no, bio_name, 
+      bio_shortname, bio_orgtype, cdg_regtype, 
+      bio_industry, bio_rga_regioncode, bio_bua_postcode, 
+      bio_con_fax, bio_con_mail, bio_bua_address
+      )
+    values (null, #{bioNo,jdbcType=VARCHAR}, #{bioName,jdbcType=VARCHAR}, 
+      #{bioShortname,jdbcType=VARCHAR}, #{bioOrgtype,jdbcType=VARCHAR}, #{cdgRegtype,jdbcType=VARCHAR}, 
+      #{bioIndustry,jdbcType=VARCHAR}, #{bioRgaRegioncode,jdbcType=VARCHAR}, #{bioBuaPostcode,jdbcType=VARCHAR}, 
+      #{bioConFax,jdbcType=VARCHAR}, #{bioConMail,jdbcType=VARCHAR}, #{bioBuaAddress,jdbcType=VARCHAR}
+      )
+      
+  </insert>
+  <insert id="insertSelective" parameterType="com.oracle.labor.po.Bio">
+    insert into bio
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bioId != null">
+        bio_id,
+      </if>
+      <if test="bioNo != null">
+        bio_no,
+      </if>
+      <if test="bioName != null">
+        bio_name,
+      </if>
+      <if test="bioShortname != null">
+        bio_shortname,
+      </if>
+      <if test="bioOrgtype != null">
+        bio_orgtype,
+      </if>
+      <if test="cdgRegtype != null">
+        cdg_regtype,
+      </if>
+      <if test="bioIndustry != null">
+        bio_industry,
+      </if>
+      <if test="bioRgaRegioncode != null">
+        bio_rga_regioncode,
+      </if>
+      <if test="bioBuaPostcode != null">
+        bio_bua_postcode,
+      </if>
+      <if test="bioConFax != null">
+        bio_con_fax,
+      </if>
+      <if test="bioConMail != null">
+        bio_con_mail,
+      </if>
+      <if test="bioBuaAddress != null">
+        bio_bua_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bioId != null">
+        #{bioId,jdbcType=VARCHAR},
+      </if>
+      <if test="bioNo != null">
+        #{bioNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bioName != null">
+        #{bioName,jdbcType=VARCHAR},
+      </if>
+      <if test="bioShortname != null">
+        #{bioShortname,jdbcType=VARCHAR},
+      </if>
+      <if test="bioOrgtype != null">
+        #{bioOrgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="cdgRegtype != null">
+        #{cdgRegtype,jdbcType=VARCHAR},
+      </if>
+      <if test="bioIndustry != null">
+        #{bioIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="bioRgaRegioncode != null">
+        #{bioRgaRegioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="bioBuaPostcode != null">
+        #{bioBuaPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bioConFax != null">
+        #{bioConFax,jdbcType=VARCHAR},
+      </if>
+      <if test="bioConMail != null">
+        #{bioConMail,jdbcType=VARCHAR},
+      </if>
+      <if test="bioBuaAddress != null">
+        #{bioBuaAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.oracle.labor.po.BioExample" resultType="java.lang.Long">
+    select count(*) from bio
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bio
+    <set>
+      <if test="record.bioId != null">
+        bio_id = #{record.bioId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioNo != null">
+        bio_no = #{record.bioNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioName != null">
+        bio_name = #{record.bioName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioShortname != null">
+        bio_shortname = #{record.bioShortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioOrgtype != null">
+        bio_orgtype = #{record.bioOrgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cdgRegtype != null">
+        cdg_regtype = #{record.cdgRegtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioIndustry != null">
+        bio_industry = #{record.bioIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioRgaRegioncode != null">
+        bio_rga_regioncode = #{record.bioRgaRegioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioBuaPostcode != null">
+        bio_bua_postcode = #{record.bioBuaPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioConFax != null">
+        bio_con_fax = #{record.bioConFax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioConMail != null">
+        bio_con_mail = #{record.bioConMail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bioBuaAddress != null">
+        bio_bua_address = #{record.bioBuaAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bio
+    set bio_id = #{record.bioId,jdbcType=VARCHAR},
+      bio_no = #{record.bioNo,jdbcType=VARCHAR},
+      bio_name = #{record.bioName,jdbcType=VARCHAR},
+      bio_shortname = #{record.bioShortname,jdbcType=VARCHAR},
+      bio_orgtype = #{record.bioOrgtype,jdbcType=VARCHAR},
+      cdg_regtype = #{record.cdgRegtype,jdbcType=VARCHAR},
+      bio_industry = #{record.bioIndustry,jdbcType=VARCHAR},
+      bio_rga_regioncode = #{record.bioRgaRegioncode,jdbcType=VARCHAR},
+      bio_bua_postcode = #{record.bioBuaPostcode,jdbcType=VARCHAR},
+      bio_con_fax = #{record.bioConFax,jdbcType=VARCHAR},
+      bio_con_mail = #{record.bioConMail,jdbcType=VARCHAR},
+      bio_bua_address = #{record.bioBuaAddress,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oracle.labor.po.Bio">
+    update bio
+    <set>
+      <if test="bioNo != null">
+        bio_no = #{bioNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bioName != null">
+        bio_name = #{bioName,jdbcType=VARCHAR},
+      </if>
+      <if test="bioShortname != null">
+        bio_shortname = #{bioShortname,jdbcType=VARCHAR},
+      </if>
+      <if test="bioOrgtype != null">
+        bio_orgtype = #{bioOrgtype,jdbcType=VARCHAR},
+      </if>
+      <if test="cdgRegtype != null">
+        cdg_regtype = #{cdgRegtype,jdbcType=VARCHAR},
+      </if>
+      <if test="bioIndustry != null">
+        bio_industry = #{bioIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="bioRgaRegioncode != null">
+        bio_rga_regioncode = #{bioRgaRegioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="bioBuaPostcode != null">
+        bio_bua_postcode = #{bioBuaPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bioConFax != null">
+        bio_con_fax = #{bioConFax,jdbcType=VARCHAR},
+      </if>
+      <if test="bioConMail != null">
+        bio_con_mail = #{bioConMail,jdbcType=VARCHAR},
+      </if>
+      <if test="bioBuaAddress != null">
+        bio_bua_address = #{bioBuaAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bio_id = #{bioId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oracle.labor.po.Bio">
+    update bio
+    set bio_no = #{bioNo,jdbcType=VARCHAR},
+      bio_name = #{bioName,jdbcType=VARCHAR},
+      bio_shortname = #{bioShortname,jdbcType=VARCHAR},
+      bio_orgtype = #{bioOrgtype,jdbcType=VARCHAR},
+      cdg_regtype = #{cdgRegtype,jdbcType=VARCHAR},
+      bio_industry = #{bioIndustry,jdbcType=VARCHAR},
+      bio_rga_regioncode = #{bioRgaRegioncode,jdbcType=VARCHAR},
+      bio_bua_postcode = #{bioBuaPostcode,jdbcType=VARCHAR},
+      bio_con_fax = #{bioConFax,jdbcType=VARCHAR},
+      bio_con_mail = #{bioConMail,jdbcType=VARCHAR},
+      bio_bua_address = #{bioBuaAddress,jdbcType=VARCHAR}
+    where bio_id = #{bioId,jdbcType=VARCHAR}
+  </update>
+</mapper>
