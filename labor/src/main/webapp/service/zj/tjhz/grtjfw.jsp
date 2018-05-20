@@ -30,23 +30,24 @@
 	function doSubmit(){
 		form1.button.disabled = true;
 		form1.button2.disabled = true;
-		if(form1.flag.value=="tj"){
-			form1.action = "<%=request.getContextPath()%>/service/zj/GrTj.do";
-		}else{
-			form1.action = "<%=request.getContextPath()%>/service/zj/grqz/GrTjYxPp.do";
-		}
 		form1.submit();
 	}
 </script>
+<script src="<%=request.getContextPath() %>/js/commonjs.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.11.1.js"></script>
 <script type="text/javascript">
 	$(function (){
 	
-		$("#citizenid").blur(function (){
-		$.post("<%=request.getContextPath()%>/service/zj/grqz/GrTjName.do", { bip_citizenid :$("#citizenid").val()+":0"},
-   		function(data){
-     		  $("#name").val(data);
-   		});
+		$("#citizenid").blur(function(){
+			$.get("../getBipByCitizenid/"+$(this).val(),function(bip){
+				if(bip.bipId==null){
+					alert("不存在此用户，请检查你输入的身份证号码是否有误");
+					$("#bip_name").empty();
+					$(this).focus();
+				}else{
+					$("#name").val(bip.bipName);
+				}
+			})
 		})
 		
 		
@@ -74,7 +75,7 @@
 </script>
 </head>
 <body>
-<form name="form1" action="" method="post">
+<form name="form1" action="../getBipForPensonalRecommend" method="post">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td><table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0">
@@ -130,7 +131,7 @@
               <table id="tjpp" width="273" border="0" cellspacing="0" cellpadding="0" height="84">
                   <tr> 
                     <td width="103">身份证号码</td>
-                    <td width="194"> <input  id="citizenid" name="bip_citizenid" type="text" maxlength="18"></td>
+                    <td width="194"> <input  id="citizenid" name="citizenid" type="text" maxlength="18"></td>
                   </tr>
                   <tr> 
                     <td width="103">姓　　　名</td>
