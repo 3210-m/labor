@@ -55,19 +55,16 @@
               <TD align="center" class="line4">联系电话</TD>
               <TD align="center" class="line4">登记日期 </TD>
               <input id="like" type="hidden" value="${list}">
-            </TR>  
-           
-             <c:forEach items="${list}" var="m">
+            </TR>             
             <TR> 
-              <TD align="center" class="line4"><a href="<%=request.getContextPath()%>/service/zj/GrTjGZ.do?bip_id=${m.bip_id}&bip_citizenid=${m.bip_citizenid}&bip_name=${m.bip_name}">推荐</a></TD>
-              <TD align="center" class="line4">${m.bip_name}</TD>
-              <TD align="center" class="line4">${m.bip_sex.cd_name}</TD>
-              <TD align="center" class="line4">${m.bip_age}</TD>
-              <TD align="center" class="line4">${m.bip_res_address }</TD>
-              <TD align="center" class="line4">${m.bip_con_telephone}</TD>
-              <TD align="center" class="line4">${m.djsj}</TD>
-            </TR>  
-            </c:forEach>
+              <TD align="center" class="line4"><a href="<%=request.getContextPath()%>/service/zj/goToChooseUnit?citizenId=${bip.bipCitizenid}">推荐</a></TD>
+              <TD align="center" class="line4">${bip.bipName}</TD>
+              <TD align="center" class="line4">${bip.bipSex}</TD>
+              <TD align="center" class="line4">${bip.bipAge}</TD>
+              <TD align="center" class="line4">${bip.bipResAddress}</TD>
+              <TD align="center" class="line4">${bip.bipConTelephone}</TD>
+              <TD align="center" class="line4">${register.djsj}</TD>
+            </TR>     
 </table>
 <br>
 <table align="center" width="98%"  border="0" cellspacing="0" cellpadding="0">

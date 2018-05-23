@@ -3,9 +3,9 @@
 	<dba-config type="com.oracle.labor.common.config.DbaConfig">
 		<dba>oracle</dba>
 		<dba-driver>com.mysql.jdbc.Driver</dba-driver>
-		<dba-url>jdbc:mysql://localhost:3306/ldlsc</dba-url>
+		<dba-url>jdbc:mysql://localhost:3306/labor</dba-url>
 		<dba-username>root</dba-username>
-		<dba-password>Tangli199781</dba-password>
+		<dba-password>root</dba-password>
 		<dba-initnum>1</dba-initnum>
 		<dba-maxnum>1</dba-maxnum>
 		<dba-maxidle>1</dba-maxidle>

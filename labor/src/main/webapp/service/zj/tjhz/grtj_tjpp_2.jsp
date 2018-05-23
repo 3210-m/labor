@@ -6,6 +6,7 @@
 <title>匹配条件选择</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<%=request.getContextPath()%>/styles/css/common.css" rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath() %>/js/commonjs.js"></script>
 <script>
 	function doSubmit(){
 		
@@ -25,8 +26,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.11.1.js"></script>
 <script type="text/javascript">
 
-
-	$(function (){
+<%-- 	$(function (){
 		
 		$(".zpgzbhname").click(function (){
 		
@@ -52,7 +52,7 @@
 	
 		
 		
-	});
+	}); --%>
 
 </script>
 </head>
@@ -89,9 +89,9 @@
 			<TBODY>
             <TR>
               <TD width="98%" align="left" class="line2">
-              	&nbsp;姓名:<a href="javascript:void(null)" style="cursor:hand" onclick="window.open('<%=request.getContextPath() %>/','grjbxx','left=100 top=100 width=820,height=469 scrollbars')" ></a> &nbsp;&nbsp;&nbsp;&nbsp;
-              	性别： &nbsp;&nbsp;&nbsp;&nbsp;             
-              	居住地址：
+              	&nbsp;姓名:<a href="javascript:void(null)" style="cursor:hand" onclick="window.open('<%=request.getContextPath() %>/'+'/service/zj/getBipAndFreezeInfo/${bip.bipCitizenid}','left=100 top=100 width=820,height=469 scrollbars')" >${bip.bipName}</a> &nbsp;&nbsp;&nbsp;&nbsp;
+              	性别:${bip.bipSex}&nbsp;&nbsp;&nbsp;&nbsp;             
+              	居住地址:${bip.bipResAddress}
               </TD>
             </TR>
         </TABLE>
@@ -137,47 +137,47 @@
             <TR>
               <TD width="13%" align="right" class="line1">单位性质</TD>
               <TD width="20%" align="center" class="line1">
-                <select id="dwxz"  name="dwxz" size="1"  style="WIDTH: 100%" onChange="sfxsjjlx()">
-      			
+                <select id="dwxz"  name="dwxz" size="1"  style="WIDTH: 100%" ">
+      			${orgtype}
                 </select></TD>
               <TD width="13%" align="right" class="line1">单位行业</TD>
               <TD width="20%" align="center" class="line1">
              
 				<select  id="dwhy"  name="dwhy" size="1"  style="WIDTH: 100%">
-
-			
-				
+				${industry}		
                 </select></TD>
                 <TD  width="13%" align="right" class="line2">经济类型</TD>
               <TD  width="20%" align="center" class="line2">
 			  <select id = "dwjjlx" name="dwjjlx" size="1"  style="WIDTH: 100%">
-				
+				${regtype}
               </select></TD>
             </TR>
             <TR>
                 <TD align="right" class="line1">性别</TD>
               <TD align="center" class="line1">
 			  <select name="xb" size="1"  style="WIDTH: 100%">
-				${map.bip_sex }
+			  <option value=""${bip.bipSex}>${bip.bipSex}</option>
               </select> </TD>
               <TD align="right" class="line1">应届毕业生</TD>
               <TD align="left" class="line1"> 
 			     <SELECT  NAME="ppfw" style="WIDTH: 100%">
-			     	${map.bip_t_newgraduate }
+			     	<option value=""${bip.bipTNewgraduate}>${bip.bipTNewgraduate}</option>
 				</SELECT>
               </TD>
              
               <TD align="right" class="line2">文化程度</TD>
               <TD align="center" class="line2">
-			  <select name="whcd" size="1"  style="WIDTH: 100%">
-				${map.bip_whcd }
+			  <select name="whcd" size="1"  style="WIDTH: 100%" >
+				${educationLevel}
                 </select></TD>
             </TR>
             <TR>
              <TD align="right" class="line2">工种匹配范围</TD>
               <TD align="center" class="line2">
 				<SELECT  id="ppfw"  NAME="gzppfw" style="WIDTH: 100%">
-				
+				<c:forEach items="${workInfo}" var="m">
+				<option value=""${m.key}>${m.value}</option>
+				</c:forEach>
 				</SELECT>
 			  </TD>
             </TR>
