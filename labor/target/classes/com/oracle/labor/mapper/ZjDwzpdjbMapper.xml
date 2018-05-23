@@ -103,13 +103,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.oracle.labor.po.ZjDwzpdjb">
+  <insert id="insert" parameterType="com.oracle.labor.po.ZjDwzpdjb" useGeneratedKeys = "true" keyProperty = "zpbh" keyColumn = "ZPBH">
     insert into zj_dwzpdjb (ZPBH, DWBH, DWLXR, 
       LXRSFZHM, LXRSJ, SFDJ, 
-      DJYXQ, DJSJ, GDSJ)
-    values (#{zpbh,jdbcType=VARCHAR}, #{dwbh,jdbcType=INTEGER}, #{dwlxr,jdbcType=VARCHAR}, 
+      DJYXQ, DJSJ)
+    values (null, #{dwbh,jdbcType=INTEGER}, #{dwlxr,jdbcType=VARCHAR}, 
       #{lxrsfzhm,jdbcType=VARCHAR}, #{lxrsj,jdbcType=VARCHAR}, #{sfdj,jdbcType=VARCHAR}, 
-      #{djyxq,jdbcType=INTEGER}, #{djsj,jdbcType=VARCHAR}, #{gdsj,jdbcType=VARCHAR})
+      #{djyxq,jdbcType=INTEGER}, #{djsj,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.oracle.labor.po.ZjDwzpdjb">
     insert into zj_dwzpdjb

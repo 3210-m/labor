@@ -1,5 +1,7 @@
 package com.oracle.labor.po;
 
+import java.util.Date;
+
 public class ZjDwzpdjb {
     private String zpbh;
 
@@ -11,11 +13,11 @@ public class ZjDwzpdjb {
 
     private String lxrsj;
 
-    private String sfdj;
+    private String sfdj="否";
 
-    private Integer djyxq;
+    private Integer djyxq = 1;
 
-    private String djsj;
+    private Date djsj = new Date();
 
     private String gdsj;
 
@@ -75,12 +77,12 @@ public class ZjDwzpdjb {
         this.djyxq = djyxq;
     }
 
-    public String getDjsj() {
+    public Date getDjsj() {
         return djsj;
     }
 
-    public void setDjsj(String djsj) {
-        this.djsj = djsj == null ? null : djsj.trim();
+    public void setDjsj(Date djsj) {
+        this.djsj = djsj == null ? null : djsj;
     }
 
     public String getGdsj() {

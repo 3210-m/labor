@@ -1,0 +1,13 @@
+1.dwdj_3.jsp 命名与ZjDwzpgzbMapper.xml中insert一致，增加没有的项;
+2.ZjDwzpgzbMapper.xml 的insert方法：
+			将ZPGZBH的value设为null，这个属性由数据库自动生成
+			删除要insert的属性：{ CGRSN(成功人数男), CGRSNV(成功人数女), GDSJ(归档时间)，这些在这个页面不能确定};
+3.为了获得 招聘登记表 生成的 ZPBH ：
+			ZjDwzpdjbMapper.xml 的insert 标签加上 useGenerateKeys = "true" keyProperty = "zpbh" keyCoclumn = "ZPBH";
+			DwBasicService里的 dwgzbSave() 方法返回 zjdwzpdjb.getZpbh();
+4.,{ZRS(总人数)这个在DwBasicHandler里计算赋值}: DwDwBasicHandler 里的djdw3save() 方法获得招聘男、女和不限 的人数
+
+2015/5/23
+1.将ZjDwzpdjb中djsj属性设初值，使登记时间等于当前时间，并修改数据库zj_dwzpdjb表djsj列类型为date
+2.运用jquery.datetimepicker.js插件，使dwdj_3.jsp页面中开始时间 结束时间能显示时间并选择。并修改数据库zj_dwzpgzb表kssj和jssj列的类型为date
+			

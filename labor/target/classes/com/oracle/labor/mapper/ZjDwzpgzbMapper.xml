@@ -139,10 +139,8 @@
       ZGYX, hyzk, jkzk, rylb, 
       sfbys, ZPDQ, JYYZ, 
       SLCD, JSJDJ, JSJSLCD, 
-      GWMS, GZDD, CGRSN, 
-      CGRSNV, DJYXQ, DJSJ, 
-      GDSJ)
-    values (#{zpgzbh,jdbcType=VARCHAR}, #{zpbh,jdbcType=VARCHAR}, #{zpgz,jdbcType=VARCHAR}, 
+      GWMS, GZDD, DJYXQ, DJSJ)
+    values (null, #{zpbh,jdbcType=VARCHAR}, #{zpgz,jdbcType=VARCHAR}, 
       #{zpgzbm,jdbcType=VARCHAR}, #{gwlb,jdbcType=VARCHAR}, #{zrs,jdbcType=VARCHAR}, 
       #{zprsn,jdbcType=VARCHAR}, #{zprsnv,jdbcType=VARCHAR}, #{xbbx,jdbcType=VARCHAR}, 
       #{hjxz,jdbcType=VARCHAR}, #{kssj,jdbcType=VARCHAR}, #{jssj,jdbcType=VARCHAR}, #{zxnl,jdbcType=VARCHAR}, 
@@ -150,9 +148,7 @@
       #{zgyx,jdbcType=VARCHAR}, #{hyzk,jdbcType=VARCHAR}, #{jkzk,jdbcType=VARCHAR}, #{rylb,jdbcType=VARCHAR}, 
       #{sfbys,jdbcType=VARCHAR}, #{zpdq,jdbcType=VARCHAR}, #{jyyz,jdbcType=VARCHAR}, 
       #{slcd,jdbcType=VARCHAR}, #{jsjdj,jdbcType=VARCHAR}, #{jsjslcd,jdbcType=VARCHAR}, 
-      #{gwms,jdbcType=VARCHAR}, #{gzdd,jdbcType=VARCHAR}, #{cgrsn,jdbcType=VARCHAR}, 
-      #{cgrsnv,jdbcType=VARCHAR}, #{djyxq,jdbcType=VARCHAR}, #{djsj,jdbcType=VARCHAR}, 
-      #{gdsj,jdbcType=VARCHAR})
+      #{gwms,jdbcType=VARCHAR}, #{gzdd,jdbcType=VARCHAR}, #{djyxq,jdbcType=VARCHAR}, #{djsj,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.oracle.labor.po.ZjDwzpgzb">
     insert into zj_dwzpgzb

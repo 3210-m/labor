@@ -1,5 +1,7 @@
 package com.oracle.labor.web;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,7 @@ import com.oracle.labor.common.codetable.SpecialtyOperation;
 import com.oracle.labor.common.codetable.ZjdgwlbOperation;
 import com.oracle.labor.po.Bio;
 import com.oracle.labor.po.ZjDwzpdjb;
+import com.oracle.labor.po.ZjDwzpgzb;
 import com.oracle.labor.service.DwBasicService;
 
 @Controller
@@ -72,9 +75,12 @@ public class DwBasicHandler {
 	/**
 	 * 存单位登记信息到bio表
 	 */
-	/*@RequestMapping("/service/zj/dwzp/dwdjSave")
-	public void dwdj2save(Bio bio) {
-		dwdjService.save(bio);
+	/*@ResponseBody
+	@RequestMapping(value = "/service/dwdj2save")
+	public String dwdj2save(Bio bio) {
+		System.out.println(bio.toString());
+		String i = dwdjService.dwdj2Save(bio);
+		return i;
 	}*/
 	
 	//dwdj_3--------------------------------------------------------------------------------------
@@ -188,12 +194,17 @@ public class DwBasicHandler {
 	 * @return 
 	 */
 	@RequestMapping("/service/zj/dwzp/dwdj3save")
-	public String djdw3save(Bio bio,ZjDwzpdjb zjdwzpdjb) {
-		dwdjService.dwdj2Save(bio);
-		dwdjService.dwdj3Save(zjdwzpdjb);
+	public String djdw3save(Bio bio,ZjDwzpdjb zjDwzpdjb,ZjDwzpgzb zjDwzpgzb) {
+		String i = dwdjService.dwdj2Save(bio);
+		System.out.println("**********************************************"+i);
+		zjDwzpdjb.setDwbh(Integer.parseInt(i));
+		String zpbh = dwdjService.dwgzbSave(zjDwzpdjb);
+		zjDwzpgzb.setZpbh(zpbh);
+		zjDwzpgzb.setZrs(Integer.toString(Integer.parseInt(zjDwzpgzb.getZprsn())+Integer.parseInt(zjDwzpgzb.getZprsnv())+Integer.parseInt(zjDwzpgzb.getXbbx())));
+		dwdjService.dwdj3Save(zjDwzpgzb);
 		return "zj/dwzp/NewFile";
 	}
-		//choosegz_ModalDialog_qyc.sp-------------------------------------------------------------	
+		//choosegz_ModalDialog_qyc.jsp-------------------------------------------------------------	
 		/**
 		 * gw、gz123
 		 */

@@ -7,9 +7,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<%=request.getContextPath()%>/styles/css/common.css"
 	rel="stylesheet" type="text/css">
+<link rel = "stylesheet" type="text/css"
+	href="<%=request.getContextPath()%>/js/jquery.datetimepicker.min.css"></link>
 <script src="<%=request.getContextPath()%>/js/commonjs.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/jquery.datetimepicker.full.js"></script>
+	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/jjquery.datetimepicker.full.min.js"></script>
+	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/jquery.datetimepicker.min.js"></script>	
 <script type="text/javascript">
 	$(function(){
 	
@@ -73,7 +81,7 @@
 		return;
 		
 		}
-		if($("#nars").val()==""&&$("#nvrs").val()==""&&$("#xbbx").val()==""){
+		if($("#zprsn").val()==""&&$("#zprsnv").val()==""&&$("#xbbx").val()==""){
 		alert("请至少填写一项招聘人数");	
 		return;
 		}
@@ -93,19 +101,19 @@
 		    alert("手机格式输入不正确，请重新输入！");
 		    return;
 		}
-		if(form1.fbkssj.value!=""&&!regtoo.test(form1.fbkssj.value)){
+		if(form1.kssj.value!=""&&!regtoo.test(form1.kssj.value)){
 		    alert("开始时间格式输入不正确，请重新输入！");
 		    return;
 		}
-		if(form1.fbjssj.value!=""&&!regtoo.test(form1.fbjssj.value)){
+		if(form1.jssj.value!=""&&!regtoo.test(form1.jssj.value)){
 		    alert("结束时间格式输入不正确，请重新输入！");
 		    return;
 		}
-		if(form1.nars.value!=""&&!regtoo.test(form1.nars.value)){
+		if(form1.zprsn.value!=""&&!regtoo.test(form1.zprsn.value)){
 		    alert("招聘人数男只能输入数字，请重新输入！");
 		    return;
 		}
-		if(form1.nvrs.value!=""&&!regtoo.test(form1.nvrs.value)){
+		if(form1.zprsnv.value!=""&&!regtoo.test(form1.zprsnv.value)){
 		    alert("招聘人数女只能输入数字，请重新输入！");
 		    return;
 		}
@@ -122,7 +130,7 @@
 		    alert("截止年龄只能输入数字，请重新输入！");
 		    return;
 		}
-		if(form1.zdyx.value!=""&&!regtoo.test(form1.zdyx.value)){
+		if(form1.zzyx.value!=""&&!regtoo.test(form1.zzyx.value)){
 		    alert("开始月薪只能输入数字，请重新输入！");
 		    return;
 		}
@@ -130,20 +138,26 @@
 		    alert("结束月薪只能输入数字，请重新输入！");
 		    return;
 		}
-		if($("#nars").val()==""){
-		$("#nars").val("0");
+		if($("#zprsn").val()==""){
+		$("#zprsn").val("0");
 		
 		}
-		if($("#nvrs").val()==""){
-		$("#nvrs").val("0");
+		if($("#zprsnv").val()==""){
+		$("#zprsnv").val("0");
 		
 		}
 		if($("#xbbx").val()==""){
 		$("#xbbx").val("0");
 		
 		}
-		
-		form1.submit();
+		/*$("#dwbh").load("../../dwdj2save",{},function(data){
+			if(data!=null&&data!="undefined"||data!=""){
+				$("#dwbh").val(data);
+				$("#zrs").val($("#zprsn").val()+$("#zprsnv").val()+$("#xbbx").val())
+				alert($("#dwbh").val());*/
+				form1.submit();
+		/*	}
+		});*/
 		});
 	});
 </script>
@@ -154,7 +168,7 @@
 			alert("职业名称不能为空!");
 			return;
 		}
-		if(form1.xbbx.value==""&&form1.nvrs.value==""&&form1.nars.value==""){
+		if(form1.xbbx.value==""&&form1.zprsnv.value==""&&form1.zprsn.value==""){
 			alert("招聘人数不能为空!");
 			return;
 		}
@@ -202,21 +216,21 @@
 	}
 	/*
 	function operateZprs(){
-		if(form1.xbbx.value==""&&(form1.nvrs.value!=""||form1.nars.value!="")){
+		if(form1.xbbx.value==""&&(form1.zprsnv.value!=""||form1.zprsn.value!="")){
 			document.all.xbbxtd.removeChild(form1.xbbx);
 			document.all.xbbxtd.innerHTML="<INPUT name=\"xbbx\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" readonly>";
-		}else if(form1.xbbx.value!=""&&(form1.nvrs.value==""&&form1.nars.value=="")){
-			document.all.narstd.removeChild(form1.nars);
-			document.all.narstd.innerHTML="<INPUT name=\"nars\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" readonly>";
-			document.all.nvrstd.removeChild(form1.nvrs);
-			document.all.nvrstd.innerHTML="<INPUT name=\"nvrs\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" readonly>";
-		}else if(form1.xbbx.value==""&&form1.nvrs.value==""&&form1.nars.value=="")){
+		}else if(form1.xbbx.value!=""&&(form1.zprsnv.value==""&&form1.zprsn.value=="")){
+			document.all.zprsntd.removeChild(form1.zprsn);
+			document.all.zprsntd.innerHTML="<INPUT name=\"zprsn\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" readonly>";
+			document.all.zprsnvtd.removeChild(form1.zprsnv);
+			document.all.zprsnvtd.innerHTML="<INPUT name=\"zprsnv\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" readonly>";
+		}else if(form1.xbbx.value==""&&form1.zprsnv.value==""&&form1.zprsn.value=="")){
 			document.all.xbbxtd.removeChild(form1.xbbx);
 			document.all.xbbxtd.innerHTML="<INPUT name=\"xbbx\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" onblur=\"operateZprs();\">";
-			document.all.narstd.removeChild(form1.nars);
-			document.all.narstd.innerHTML="<INPUT name=\"nars\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" onblur=\"operateZprs();\">";
-			document.all.nvrstd.removeChild(form1.nvrs);
-			document.all.nvrstd.innerHTML="<INPUT name=\"nvrs\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" onblur=\"operateZprs();\">";
+			document.all.zprsntd.removeChild(form1.zprsn);
+			document.all.zprsntd.innerHTML="<INPUT name=\"zprsn\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" onblur=\"operateZprs();\">";
+			document.all.zprsnvtd.removeChild(form1.zprsnv);
+			document.all.zprsnvtd.innerHTML="<INPUT name=\"zprsnv\" size=\"8\" style=\"WIDTH: 100%\" maxlength=\"3\" onblur=\"operateZprs();\">";
 		}
 	}
 	 */
@@ -258,13 +272,26 @@
 		$("#yzslcd").load("../../getslcd");
 		
 		
+		
+	});
+</script>
+<script type="text/javascript">
+	$(function(){
+		$.datetimepicker.setLocale('zh');
+		$("#kssj").datetimepicker({
+			format:'Y-m-d'
+		});
+		$("#jssj").datetimepicker({
+			format:'Y-m-d'
+		});
 	});
 </script>
 </head>
 <body>
-	<form method="post" name="form1" action="dwdj3save">
+<form method="post" name="form1" action="dwdj3save">
 
 		<!-- *******************************************dwdj_2的内容****************************************************************** -->
+		
 		<!-- 单位法人码  -->
 		<input type="hidden" name="bioNo" id="bioNo" value="${param.bioNo}">
 		<!-- 单位全称  -->
@@ -300,6 +327,8 @@
 
 		<!-- ************************************************************************************************************************* -->
 
+		<!-- 单位法人码  -->
+		<input type="hidden" name="dwbh" id="dwbh" value="">
 		<input type="hidden" name="dwdj" value="dwdj3" /> <input
 			type="hidden" name="dwbh" id="dwbh"
 			value=<%=request.getSession().getAttribute("dwbh")%>>
@@ -378,10 +407,11 @@
 						</tr>
 						<tr class="line1">
 							<td align="right"><span class="redtxt">*</span>招聘人数</td>
-							<td colspan="3">男 <INPUT name="nars" id="nars" size="1">
-								女 <INPUT name="nvrs" id="nvrs" size="1"> 不限 <INPUT
+							<td colspan="3">男 <INPUT name="zprsn" id="zprsn" size="1" value = "0">
+								女 <INPUT name="zprsnv" id="zprsnv" size="1" value = "0"> 不限 <INPUT
 								name="xbbx" id="xbbx" size="1">
 							</td>
+							<td><input type="hidden" name="zts" id="zrs" value=""/></td>
 							<td align="right">户籍性质</td>
 							<td><select id="hjxz" name="hjxz" style="WIDTH: 100%">
 
@@ -389,14 +419,10 @@
 						</tr>
 						<tr class="line2">
 							<td align="right" width="140">开始时间</td>
-							<td><textarea name="fbkssj" style="WIDTH: 100%" class='mask'
-									htcurl="url(<%=request.getContextPath()%>/common/htc/format.htc)"
-									rows="1" cols="10" mask='date' maxlength="8"></textarea></td>
+							<td><input type = "text" name="kssj" id = "kssj" style="WIDTH: 100%" class='mask'></input></td>
 
 							<td align="right">截至时间</td>
-							<td><textarea name="fbjssj" style="WIDTH: 100%" class='mask'
-									htcurl="url(<%=request.getContextPath()%>/common/htc/format.htc)"
-									rows="1" cols="10" mask='date' maxlength="8"></textarea></td>
+							<td><input type = "text" name="jssj" id = "jssj" style="WIDTH: 100%" class='mask'></input></td>
 							<td align="right">年龄</td>
 							<td>
 								<table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -425,7 +451,7 @@
 							<td>
 								<table width="100%" border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td width="45%"><INPUT name="zdyx" style="WIDTH: 100%"
+										<td width="45%"><INPUT name="zzyx" style="WIDTH: 100%"
 											maxlength="5" onblur="checkJe(this);"></td>
 										<td width="10%">至</td>
 										<td width="45%"><INPUT name="zgyx" style="WIDTH: 100%"
@@ -445,7 +471,7 @@
 
 							</select></td>
 							<td align="right">招用应届生</td>
-							<td><select name="sfyjgxbys" style="WIDTH: 100%">
+							<td><select name="sfbys" style="WIDTH: 100%">
 									<option value=""></option>
 									<option value="1">是</option>
 									<option value="0">否</option>

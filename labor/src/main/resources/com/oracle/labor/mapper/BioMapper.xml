@@ -126,7 +126,7 @@
       #{bioConFax,jdbcType=VARCHAR}, #{bioConMail,jdbcType=VARCHAR}, #{bioBuaAddress,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insert" parameterType="com.oracle.labor.po.Bio"  useGeneratedKeys = "true" keyProperty = "bioId">
+  <insert id="insert" parameterType="com.oracle.labor.po.Bio"  useGeneratedKeys = "true" keyProperty = "bioId" keyColumn="bio_id">
     insert into bio (bio_id, bio_no, bio_name, 
       bio_shortname, bio_orgtype, cdg_regtype, 
       bio_industry, bio_rga_regioncode, bio_bua_postcode, 
